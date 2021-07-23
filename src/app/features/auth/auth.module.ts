@@ -5,16 +5,12 @@ import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];
 
-
 @NgModule({
-  imports: [
-    SharedModule,
-    RouterModule.forRoot(routes)
-  ],
+  imports: [SharedModule, RouterModule.forRoot(routes)],
   declarations: [AuthComponent],
   exports: [AuthComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

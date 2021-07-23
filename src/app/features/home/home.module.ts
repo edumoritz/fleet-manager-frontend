@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [HomeComponent]
+  imports: [CommonModule],
+  declarations: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}
