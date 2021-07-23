@@ -5,10 +5,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-
   isSignUp = false;
 
   login = {
@@ -17,20 +16,15 @@ export class AuthComponent implements OnInit {
     type_user: '',
   };
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async onSubmit() {
     try {
       const result = await this.authService.login(this.login);
-      console.log(`Login efetuado: ${result}`);
+      console.log('Login efetuado: ', result);
 
-      // navego para a rota vazia novamente
       this.router.navigate(['']);
     } catch (error) {
       console.error(error);
@@ -44,5 +38,4 @@ export class AuthComponent implements OnInit {
   onSignIn() {
     this.isSignUp = false;
   }
-
 }

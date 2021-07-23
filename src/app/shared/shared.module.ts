@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -13,14 +11,14 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

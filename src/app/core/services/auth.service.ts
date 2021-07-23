@@ -5,16 +5,25 @@ import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from '@stores/token-storage.service';
 
+interface TokenDTO {
+  accessToken: string;
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private http: HttpClient, private router: Router,
-    private tokenStorageService: TokenStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
   async login(user: any) {
-    const result = await this.http.post<any>(`${environment.api_url}/auth/signin`, user).toPromise();
+    const result = await this.http
+      .post<TokenDTO>(`${environment.api_url}/auth/signin`, user)
+      .toPromise();
+
     if (result && result.accessToken) {
       this.tokenStorageService.saveAuthToken(result.accessToken);
       return true;
@@ -24,7 +33,9 @@ export class AuthService {
   }
 
   async createAccount(account: any) {
-    const result = await this.http.post<any>(`${environment.api_url}/users`, account).toPromise();
+    const result = await this.http
+      .post<TokenDTO>(`${environment.api_url}/users`, account)
+      .toPromise();
     return result;
   }
 
@@ -34,7 +45,7 @@ export class AuthService {
   }
 
   getTokenExpirationDate(token: string): Date | null {
-    const decoded: any = jwt_decode(token);
+    const decoded: { exp: number } = jwt_decode(token);
 
     if (decoded.exp === undefined) {
       return null;
@@ -75,6 +86,7 @@ export class AuthService {
 
   logout() {
     this.tokenStorageService.removeTokens();
+
     this.router.navigate(['/login']);
   }
 }
