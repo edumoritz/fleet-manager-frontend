@@ -1,92 +1,92 @@
-import { Router } from '@angular/router';
-import { environment } from './../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import jwt_decode from 'jwt-decode';
-import { TokenStorageService } from '@stores/token-storage.service';
+import { Router } from "@angular/router";
+import { environment } from "./../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import jwt_decode from "jwt-decode";
+import { TokenStorageService } from "@stores/token-storage.service";
 
 interface TokenDTO {
-  accessToken: string;
+	accessToken: string;
 }
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: "root"
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private tokenStorageService: TokenStorageService
-  ) {}
+	constructor(
+		private http: HttpClient,
+		private router: Router,
+		private tokenStorageService: TokenStorageService
+	) {}
 
-  async login(user: any) {
-    const result = await this.http
-      .post<TokenDTO>(`${environment.api_url}/auth/signin`, user)
-      .toPromise();
+	async login(user: any) {
+		const result = await this.http
+			.post<TokenDTO>(`${environment.api_url}/auth/signin`, user)
+			.toPromise();
 
-    if (result && result.accessToken) {
-      this.tokenStorageService.saveAuthToken(result.accessToken);
-      return true;
-    }
+		if (result && result.accessToken) {
+			this.tokenStorageService.saveAuthToken(result.accessToken);
+			return true;
+		}
 
-    return false;
-  }
+		return false;
+	}
 
-  async createAccount(account: any) {
-    const result = await this.http
-      .post<TokenDTO>(`${environment.api_url}/users`, account)
-      .toPromise();
-    return result;
-  }
+	async createAccount(account: any) {
+		const result = await this.http
+			.post<TokenDTO>(`${environment.api_url}/users`, account)
+			.toPromise();
+		return result;
+	}
 
-  getAuthorizationToken() {
-    const token = this.tokenStorageService.getAuthToken();
-    return token;
-  }
+	getAuthorizationToken() {
+		const token = this.tokenStorageService.getAuthToken();
+		return token;
+	}
 
-  getTokenExpirationDate(token: string): Date | null {
-    const decoded: { exp: number } = jwt_decode(token);
+	getTokenExpirationDate(token: string): Date | null {
+		const decoded: { exp: number } = jwt_decode(token);
 
-    if (decoded.exp === undefined) {
-      return null;
-    }
+		if (decoded.exp === undefined) {
+			return null;
+		}
 
-    const date = new Date(0);
-    date.setUTCSeconds(decoded.exp);
-    return date;
-  }
+		const date = new Date(0);
+		date.setUTCSeconds(decoded.exp);
+		return date;
+	}
 
-  isTokenExpired(token?: string): boolean {
-    if (!token) {
-      return true;
-    }
+	isTokenExpired(token?: string): boolean {
+		if (!token) {
+			return true;
+		}
 
-    const date = this.getTokenExpirationDate(token);
-    if (!date) {
-      return false;
-    }
+		const date = this.getTokenExpirationDate(token);
+		if (!date) {
+			return false;
+		}
 
-    if (!(date.valueOf() > new Date().valueOf())) {
-      this.tokenStorageService.removeTokens();
-    }
+		if (!(date.valueOf() > new Date().valueOf())) {
+			this.tokenStorageService.removeTokens();
+		}
 
-    return false;
-  }
+		return false;
+	}
 
-  isUserLoggedIn() {
-    const token = this.getAuthorizationToken();
-    if (!token) {
-      return false;
-    } else if (this.isTokenExpired(token)) {
-      return false;
-    }
+	isUserLoggedIn() {
+		const token = this.getAuthorizationToken();
+		if (!token) {
+			return false;
+		} else if (this.isTokenExpired(token)) {
+			return false;
+		}
 
-    return true;
-  }
+		return true;
+	}
 
-  logout() {
-    this.tokenStorageService.removeTokens();
+	logout() {
+		this.tokenStorageService.removeTokens();
 
-    this.router.navigate(['/login']);
-  }
+		this.router.navigate(["/login"]);
+	}
 }

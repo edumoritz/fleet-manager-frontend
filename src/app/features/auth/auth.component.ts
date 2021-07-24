@@ -1,41 +1,41 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../../core/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { AuthService } from "./../../core/services/auth.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+	selector: "app-auth",
+	templateUrl: "./auth.component.html",
+	styleUrls: ["./auth.component.scss"]
 })
 export class AuthComponent implements OnInit {
-  isSignUp = false;
+	isSignUp = false;
 
-  login = {
-    username: '',
-    password: '',
-    type_user: '',
-  };
+	login = {
+		username: "",
+		password: "",
+		type_user: ""
+	};
 
-  constructor(private authService: AuthService, private router: Router) {}
+	constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  async onSubmit() {
-    try {
-      const result = await this.authService.login(this.login);
-      console.log('Login efetuado: ', result);
+	async onSubmit() {
+		try {
+			const result = await this.authService.login(this.login);
+			console.log("Login efetuado: ", result);
 
-      this.router.navigate(['']);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+			this.router.navigate([""]);
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-  onSignUp() {
-    this.isSignUp = true;
-  }
+	onSignUp() {
+		this.isSignUp = true;
+	}
 
-  onSignIn() {
-    this.isSignUp = false;
-  }
+	onSignIn() {
+		this.isSignUp = false;
+	}
 }
