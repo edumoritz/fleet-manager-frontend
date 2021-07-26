@@ -1,54 +1,118 @@
-<h2 class="text-center">Entrar</h2>
+<div class="container flex align-items-center justify-content-center">
+	<div class="flex flex-column">
+		<div class="field">
+			<h1>Login</h1>
+			<p>Preencha seu nome de usuário e senha para fazer login.</p>
+		</div>
 
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-	<div class="form-group">
-		<label>Usuario</label>
-		<input
-			class="form-control"
-			type="email"
-			name="email"
-			id="email"
-			[(ngModel)]="login.username"
-			required
-		/>
-	</div>
-	<div class="form-group">
-		<label>Senha</label>
-		<input
-			class="form-control"
-			type="password"
-			name="password"
-			id="password"
-			[(ngModel)]="login.password"
-			required
-		/>
-	</div>
-	<div class="form-group" *ngIf="isSignUp">
-		<label>Tipo usuario</label>
-		<input
-			class="form-control"
-			type="text"
-			name="typeUser"
-			id="typeUser"
-			[(ngModel)]="login.type_user"
-			[required]="isSignUp"
-		/>
-	</div>
-	<br />
-	<button
-		type="submit"
-		class="btn btn-primary btn-block"
-		[disabled]="form.form.invalid"
-	>
-		Entrar
-	</button>
+		<form (ngSubmit)="onSubmit()" #form="ngForm">
+			<div class="flex flex-column mt-2">
+				<label for="usuario">Usuario</label>
+				<input
+					type="text"
+					name="username"
+					pInputText
+					[(ngModel)]="login.username"
+					required
+				/>
+			</div>
 
-	<br />
-	<div *ngIf="!isSignUp">
-		<button (click)="onSignUp()">Criar conta</button>
-	</div>
+			<div class="flex flex-column mt-2">
+				<label for="password">Senha</label>
+				<p-password
+					name="password"
+					[(ngModel)]="login.password"
+					[toggleMask]="true"
+					required
+				></p-password>
+			</div>
 
-	<div *ngIf="isSignUp">
-		<button (click)="onSignIn()">Login</button>
+			<div class="flex flex-column mt-2" *ngIf="isSignUp">
+				<label for="typeUser">Tipo usuario</label>
+				<p-dropdown
+					[options]="typesUser"
+					[(ngModel)]="selectedTypeUser"
+					optionLabel="value"
+					[required]="isSignUp"
+				></p-dropdown>
+			</div>
+
+			<div class="field mt-4">
+				<p-button
+					type="submit"
+					(click)="onSignUp()"
+					[disabled]="form.form.invalid"
+					>Entrar</p-button
+				>
+			</div>
+		</form>
+
+		<div *ngIf="!isSignUp">
+			<p-button
+				label="Criar conta"
+				styleClass="p-button-link"
+				(click)="onSignUp()"
+			></p-button>
+		</div>
+
+		<div *ngIf="isSignUp">
+			<p-button
+				label="Fazer Login"
+				styleClass="p-button-link"
+				(click)="onSignIn()"
+			></p-button>
+		</div>
 	</div>
-</form>
+</div>
+
+<!--
+
+<div class="container flex align-items-center justify-content-center">
+	<div class="flex flex-column">
+		<h1>Login</h1>
+		<p>Dropdown is used to select an item from a list of options.</p>
+		<form (ngSubmit)="onSubmit()" #form="ngForm">
+			<h5>Usuario</h5>
+			<input
+				type="text"
+				name="username"
+				pInputText
+				[(ngModel)]="login.username"
+				required
+			/>
+
+			<h5>Senha</h5>
+			<p-password
+				name="password"
+				[(ngModel)]="login.password"
+				[toggleMask]="true"
+				required
+			></p-password>
+
+			<h5>Tipo usuario</h5>
+			<p-dropdown
+				[options]="typesUser"
+				[(ngModel)]="selectedTypeUser"
+				optionLabel="value"
+				[required]="isSignUp"
+			></p-dropdown>
+
+			<br />
+			<p-button
+				type="submit"
+				(click)="onSignUp()"
+				[disabled]="form.form.invalid"
+				>Entrar</p-button
+			>
+
+			<br />
+			<div *ngIf="!isSignUp">
+				<button (click)="onSignUp()">Criar conta</button>
+			</div>
+
+			<div *ngIf="isSignUp">
+				<button (click)="onSignIn()">Login</button>
+			</div>
+		</form>
+	</div>
+</div> -->

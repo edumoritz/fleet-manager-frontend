@@ -2,6 +2,11 @@ import { Router } from "@angular/router";
 import { AuthService } from "./../../core/services/auth.service";
 import { Component, OnInit } from "@angular/core";
 
+interface TypeUser {
+	value: string;
+	key: string;
+}
+
 @Component({
 	selector: "app-auth",
 	templateUrl: "./auth.component.html",
@@ -9,6 +14,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AuthComponent implements OnInit {
 	isSignUp = false;
+
+	typesUser: TypeUser[];
+
+	selectedTypeUser: TypeUser;
 
 	login = {
 		username: "",
@@ -18,7 +27,13 @@ export class AuthComponent implements OnInit {
 
 	constructor(private authService: AuthService, private router: Router) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.typesUser = [
+			{ value: "Condutor", key: "CONDUCTOR" },
+			{ value: "Cliente", key: "CLIENT" },
+			{ value: "Administrador", key: "ADMIN" }
+		];
+	}
 
 	async onSubmit() {
 		try {
