@@ -1,0 +1,56 @@
+<div class="container flex align-items-center justify-content-center">
+	<div class="flex flex-column">
+		<div class="field text-center">
+			<h1>Login</h1>
+			<p>Preencha seu nome de usuário e senha para fazer login.</p>
+		</div>
+
+		<form (ngSubmit)="onSubmit()" #form="ngForm">
+			<div class="flex flex-column mt-2">
+				<label for="usuario">Usuario</label>
+				<input
+					type="text"
+					name="username"
+					pInputText
+					[(ngModel)]="login.username"
+					required
+				/>
+			</div>
+
+			<div class="flex flex-column mt-2">
+				<label for="password">Senha</label>
+				<p-password
+					name="password"
+					[(ngModel)]="login.password"
+					[toggleMask]="true"
+					required
+				></p-password>
+			</div>
+
+			<div class="flex flex-column mt-2">
+				<label for="typeUser">Tipo usuario</label>
+				<p-dropdown
+					[options]="typesUser"
+					[(ngModel)]="selectedTypeUser"
+					optionLabel="value"
+				></p-dropdown>
+			</div>
+
+			<div class="field mt-4">
+				<p-button
+					type="submit"
+					label="Entrar"
+					[disabled]="form.form.invalid"
+				></p-button>
+			</div>
+		</form>
+
+		<button
+			pButton
+			type="button"
+			label="Já tenho uma conta"
+			(click)="onSignIn()"
+			class="p-button-link"
+		></button>
+	</div>
+</div>

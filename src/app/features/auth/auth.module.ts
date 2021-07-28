@@ -1,3 +1,5 @@
+import { SignupComponent } from "./signup/signup.component";
+import { SigninComponent } from "./signin/signin.component";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "./../../shared/shared.module";
 import { NgModule } from "@angular/core";
@@ -9,8 +11,14 @@ import { PasswordModule } from "primeng/password";
 import { DropdownModule } from "primeng/dropdown";
 
 const routes: Routes = [
-	{ path: "login", component: AuthComponent },
-	{ path: "**", redirectTo: "" }
+	{
+		path: "login",
+		component: AuthComponent
+	}
+
+	// { path: "signin", component: SigninComponent },
+	// { path: "signup", component: SignupComponent },
+	// { path: "**", redirectTo: "" }
 ];
 
 @NgModule({
@@ -22,7 +30,7 @@ const routes: Routes = [
 		PasswordModule,
 		DropdownModule
 	],
-	declarations: [AuthComponent],
+	declarations: [AuthComponent, SigninComponent, SignupComponent],
 	exports: [AuthComponent]
 })
 export class AuthModule {}
