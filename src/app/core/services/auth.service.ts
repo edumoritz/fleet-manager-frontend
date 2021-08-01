@@ -26,6 +26,29 @@ export class AuthService {
 
 		if (result && result.accessToken) {
 			this.tokenStorageService.saveAuthToken(result.accessToken);
+
+			// console.log("Login efetuado: ", result);
+
+			this.router.navigate([""]);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	async signup(user: any) {
+		const result = await this.http
+			.post<TokenDTO>(`${environment.api_url}/auth/signup`, user)
+			.toPromise();
+
+		if (result && result.accessToken) {
+			this.tokenStorageService.saveAuthToken(result.accessToken);
+
+			// console.log("Login efetuado");
+
+			this.router.navigate([""]);
+
 			return true;
 		}
 

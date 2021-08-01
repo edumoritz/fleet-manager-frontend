@@ -11,14 +11,9 @@ import { PasswordModule } from "primeng/password";
 import { DropdownModule } from "primeng/dropdown";
 
 const routes: Routes = [
-	{
-		path: "login",
-		component: AuthComponent
-	}
-
-	// { path: "signin", component: SigninComponent },
-	// { path: "signup", component: SignupComponent },
-	// { path: "**", redirectTo: "" }
+	{ path: "signin", component: SigninComponent },
+	{ path: "signup", component: SignupComponent },
+	{ path: "**", redirectTo: "signin", pathMatch: "full" }
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { AuthService } from "@core/services/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
 	selector: "app-signin",
@@ -8,26 +9,56 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./signin.component.scss"]
 })
 export class SigninComponent implements OnInit {
-	login = {
-		username: "",
-		password: "",
-		type_user: ""
-	};
+	formSignin: FormGroup;
 
-	constructor(private authService: AuthService, private router: Router) {}
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+		private fb: FormBuilder
+	) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.createForm();
+	}
+
+	createForm() {
+		this.formSignin = this.fb.group({
+			username: [
+				"",
+				Validators.compose([
+					Validators.required,
+					Validators.minLength(3)
+				])
+			],
+			password: [
+				"",
+				Validators.compose([
+					Validators.required,
+					Validators.pattern(
+						/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+					)
+				])
+			]
+		});
+	}
 
 	async onSubmit() {
 		try {
-			const result = await this.authService.login(this.login);
-			console.log("Login efetuado: ", result);
-
-			this.router.navigate([""]);
+			await this.authService.login(this.formSignin.value);
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
-	onSignUp() {}
+	onSignUp() {
+		this.router.navigate(["signup"]);
+	}
+
+	get username() {
+		return this.formSignin.get("username");
+	}
+
+	get password() {
+		return this.formSignin.get("password");
+	}
 }

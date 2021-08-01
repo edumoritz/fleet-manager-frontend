@@ -5,34 +5,57 @@
 			<p>Preencha seu nome de usuário e senha para fazer login.</p>
 		</div>
 
-		<form (ngSubmit)="onSubmit()" #form="ngForm">
+		<form [formGroup]="formSignin" (ngSubmit)="onSubmit()" #form="ngForm">
 			<div class="flex flex-column mt-2">
 				<label for="usuario">Usuario</label>
 				<input
 					type="text"
 					name="username"
 					pInputText
-					[(ngModel)]="login.username"
+					formControlName="username"
 					required
 				/>
+
+        <ng-template [ngIf]="username?.invalid && (username?.dirty || username?.touched)">
+
+          <div *ngIf="username?.errors?.required" class="alert">
+            Usuario é obrigatório
+          </div>
+
+          <div *ngIf="username?.errors?.minlength" class="alert">
+            Usuario deve ter no minímo 3 caracteres
+          </div>
+
+        </ng-template>
+
 			</div>
 
 			<div class="flex flex-column mt-2">
 				<label for="password">Senha</label>
 				<p-password
 					name="password"
-					[(ngModel)]="login.password"
+					formControlName="password"
 					[toggleMask]="true"
 					required
 				></p-password>
+
+        <ng-template [ngIf]="password?.invalid && (password?.dirty || password?.touched)">
+
+          <div *ngIf="password?.errors?.required" class="alert">
+            Senha é obrigatória.
+          </div>
+
+          <div *ngIf="password?.errors?.pattern" class="alert">
+            Senha muito fraca.
+          </div>
+        </ng-template>
 			</div>
 
 			<div class="field mt-4">
 				<p-button
 					type="submit"
 					label="Entrar"
-					(click)="onSignUp()"
-					[disabled]="form.form.invalid"
+					[disabled]="formSignin.invalid"
 				></p-button>
 			</div>
 		</form>
