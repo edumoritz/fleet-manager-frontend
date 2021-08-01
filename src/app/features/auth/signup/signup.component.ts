@@ -67,6 +67,8 @@ export class SignupComponent implements OnInit {
 	}
 
 	changeTypeUser() {
+		this.formSignup.get("type_user")?.markAsTouched();
+
 		this.formSignup.get("type_user")?.setValue(this.selectedTypeUser?.key);
 	}
 
