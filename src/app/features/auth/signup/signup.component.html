@@ -11,65 +11,65 @@
 				<input
 					type="text"
 					name="username"
-          formControlName="username"
+					formControlName="username"
 					pInputText
 					required
 				/>
 
-        <ng-template [ngIf]="username?.invalid && (username?.dirty || username?.touched)">
+				<ng-template
+					[ngIf]="username?.invalid && (username?.dirty || username?.touched)"
+				>
+					<div *ngIf="username?.errors?.required" class="alert">
+						Usuario é obrigatório
+					</div>
 
-          <div *ngIf="username?.errors?.required" class="alert">
-            Usuario é obrigatório
-          </div>
-
-          <div *ngIf="username?.errors?.minlength" class="alert">
-            Usuario deve ter no minímo 3 caracteres
-          </div>
-
-        </ng-template>
-
+					<div *ngIf="username?.errors?.minlength" class="alert">
+						Usuario deve ter no minímo 3 caracteres
+					</div>
+				</ng-template>
 			</div>
 
 			<div class="flex flex-column mt-2">
 				<label for="password">Senha</label>
 				<p-password
 					name="password"
-          formControlName="password"
+					formControlName="password"
 					[toggleMask]="true"
 					required
 				></p-password>
 
-        <ng-template [ngIf]="password?.invalid && (password?.dirty || password?.touched)">
+				<ng-template
+					[ngIf]="password?.invalid && (password?.dirty || password?.touched)"
+				>
+					<div *ngIf="password?.errors?.required" class="alert">
+						Senha é obrigatória.
+					</div>
 
-          <div *ngIf="password?.errors?.required" class="alert">
-            Senha é obrigatória.
-          </div>
-
-          <div *ngIf="password?.errors?.pattern" class="alert">
-            Senha muito fraca.
-          </div>
-        </ng-template>
-
+					<div *ngIf="password?.errors?.pattern" class="alert">
+						Senha muito fraca.
+					</div>
+				</ng-template>
 			</div>
 
 			<div class="flex flex-column mt-2">
 				<label for="typeUser">Tipo usuario</label>
 				<p-dropdown
-          placeholder="Selecione o tipo..."
-          [showClear]="true"
+					placeholder="Selecione o tipo..."
+					[showClear]="true"
 					[options]="typesUser"
-          [(ngModel)]="selectedTypeUser"
-          (onChange)="changeTypeUser()"
-          [ngModelOptions]="{standalone: true}"
+					[(ngModel)]="selectedTypeUser"
+					(onChange)="changeTypeUser()"
+					[ngModelOptions]="{standalone: true}"
 					optionLabel="value"
 				></p-dropdown>
 
-        <ng-template [ngIf]="getTypeUser?.invalid && (getTypeUser?.dirty || getTypeUser?.touched)">
-
-          <div *ngIf="getTypeUser?.errors?.required" class="alert">
-            Tipo usuario é obrigatório
-          </div>
-        </ng-template>
+				<ng-template
+					[ngIf]="getTypeUser?.invalid && (getTypeUser?.dirty || getTypeUser?.touched)"
+				>
+					<div *ngIf="getTypeUser?.errors?.required" class="alert">
+						Tipo usuario é obrigatório
+					</div>
+				</ng-template>
 			</div>
 
 			<div class="field mt-4">

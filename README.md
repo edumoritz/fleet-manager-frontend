@@ -1,13 +1,27 @@
 # FleetManagerFrontend
 
+[![Author](https://img.shields.io/badge/author-edumoritz-blue?style=flat-square)](https://github.com/edumoritz)
+[![Languages](https://img.shields.io/github/languages/count/edumoritz/fleet-manager-frontend?color=blue&style=flat-square)](#)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
-## Angular Eslint
+## Theme Dark and Light
 
-<a href="https://dev.to/gsarciotto/migrating-and-configuring-eslint-with-angular-11-3fg1">Tutorial Angular eslint</a>
+![Theme Dark Preview](.github/dark.png)
+![Theme Dark Preview](.github/light.png)
 
-<a href="https://github.com/angular-eslint/angular-eslint">Angular eslint</a>
+## Tecnologies
 
-## Primeflex
+This project was developed using:
 
-<a href="https://www.primefaces.org/primeflex/flex">Prime Flex</a>
+-   [Angular eslint](https://github.com/angular-eslint/angular-eslint)
+-   [Primeng](https://www.primefaces.org/primeng/)
+-   [Prime Flex](https://www.primefaces.org/primeflex/flex)
+
+## Utils
+
+<a href="https://dev.to/gsarciotto/migrating-and-configuring-eslint-with-angular-11-3fg1">Doc Angular eslint</a>
+
+## Backend Prod NestJS
+
+<a href="https://fleet-manager-backend.herokuapp.com/docs" target="_blank">Heroku NestJS</a>

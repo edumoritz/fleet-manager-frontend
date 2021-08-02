@@ -10,7 +10,6 @@ const routes: Routes = [
 		component: HomeComponent,
 		canActivate: [AuthGuard]
 	}
-	// { path: "**", redirectTo: "signin", pathMatch: "full" }
 ];
 
 @NgModule({
