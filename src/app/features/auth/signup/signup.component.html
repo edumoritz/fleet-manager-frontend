@@ -1,0 +1,92 @@
+<div class="container flex align-items-center justify-content-center">
+	<div class="flex flex-column">
+		<div class="field text-center">
+			<h1>Cadastro</h1>
+			<p>Preencha as informações básicas para se cadastrar no sistema</p>
+		</div>
+
+		<form [formGroup]="formSignup" (ngSubmit)="onSubmit()" #form="ngForm">
+			<div class="flex flex-column mt-2">
+				<label for="usuario">Usuario</label>
+				<input
+					type="text"
+					name="username"
+					formControlName="username"
+					pInputText
+					required
+				/>
+
+				<ng-template
+					[ngIf]="username?.invalid && (username?.dirty || username?.touched)"
+				>
+					<div *ngIf="username?.errors?.required" class="alert">
+						Usuario é obrigatório
+					</div>
+
+					<div *ngIf="username?.errors?.minlength" class="alert">
+						Usuario deve ter no minímo 3 caracteres
+					</div>
+				</ng-template>
+			</div>
+
+			<div class="flex flex-column mt-2">
+				<label for="password">Senha</label>
+				<p-password
+					name="password"
+					formControlName="password"
+					[toggleMask]="true"
+					required
+				></p-password>
+
+				<ng-template
+					[ngIf]="password?.invalid && (password?.dirty || password?.touched)"
+				>
+					<div *ngIf="password?.errors?.required" class="alert">
+						Senha é obrigatória.
+					</div>
+
+					<div *ngIf="password?.errors?.pattern" class="alert">
+						Senha muito fraca.
+					</div>
+				</ng-template>
+			</div>
+
+			<div class="flex flex-column mt-2">
+				<label for="typeUser">Tipo usuario</label>
+				<p-dropdown
+					placeholder="Selecione o tipo..."
+					[showClear]="true"
+					[options]="typesUser"
+					[(ngModel)]="selectedTypeUser"
+					(onChange)="changeTypeUser()"
+					[ngModelOptions]="{standalone: true}"
+					optionLabel="value"
+				></p-dropdown>
+
+				<ng-template
+					[ngIf]="getTypeUser?.invalid && (getTypeUser?.dirty || getTypeUser?.touched)"
+				>
+					<div *ngIf="getTypeUser?.errors?.required" class="alert">
+						Tipo usuario é obrigatório
+					</div>
+				</ng-template>
+			</div>
+
+			<div class="field mt-4">
+				<p-button
+					type="submit"
+					label="Entrar"
+					[disabled]="formSignup.invalid"
+				></p-button>
+			</div>
+		</form>
+
+		<button
+			pButton
+			type="button"
+			label="Já tenho uma conta"
+			(click)="onSignIn()"
+			class="p-button-link"
+		></button>
+	</div>
+</div>

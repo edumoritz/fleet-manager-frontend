@@ -31,6 +31,14 @@
         "@angular-eslint/no-empty-lifecycle-method": "off",
 
 
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
+
+
         // "@typescript-eslint/unbound-method": "off",
         // "@typescript-eslint/no-unsafe-assignment": "off",
         // "@typescript-eslint/no-unsafe-member-access": "off",
