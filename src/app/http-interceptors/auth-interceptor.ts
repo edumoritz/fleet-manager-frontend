@@ -1,3 +1,4 @@
+import { IMensageToast } from "@model/message-toast.model";
 import { AuthService } from "./../core/services/auth.service";
 import { Injectable } from "@angular/core";
 import {
@@ -8,6 +9,7 @@ import {
 } from "@angular/common/http";
 import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { ToastTypeEnum } from "@shared/enum/toast.enum";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -23,22 +25,20 @@ export class AuthInterceptor implements HttpInterceptor {
 			});
 		}
 
-		// return next.handle(request).pipe(catchError(this.handleError));
 		return next
 			.handle(request)
 			.pipe(catchError((err) => this.handleError(err)));
 	}
 
 	private handleError(error: HttpErrorResponse) {
-		if (error.error instanceof ErrorEvent) {
-			console.error("Ocorreu um erro:", error.error.message);
-		} else {
-			console.error(
-				`Código do erro ${error.status}, ` +
-					`Erro: ${JSON.stringify(error.error)}`
-			);
-		}
+		const { message } = error.error as ErrorEvent;
 
-		return throwError("Ocorreu um erro, tente novamente");
+		const messageToast: IMensageToast = {
+			title: ToastTypeEnum.ERROR,
+			type: ToastTypeEnum.ERROR,
+			description: message
+		};
+
+		return throwError(messageToast);
 	}
 }

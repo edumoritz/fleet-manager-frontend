@@ -7,7 +7,13 @@
 	height: 100vh;
 }
 
+.field {
+	h1 {
+		margin-bottom: 4px;
+	}
+}
+
 .alert {
 	margin: 4px;
-	color: #d13424;
+	color: var(--danger-2-strong);
 }
