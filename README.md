@@ -17,6 +17,7 @@ This project was developed using:
 -   [Angular eslint](https://github.com/angular-eslint/angular-eslint)
 -   [Primeng](https://www.primefaces.org/primeng/)
 -   [Prime Flex](https://www.primefaces.org/primeflex/flex)
+-   [Sweetalert2](https://sweetalert2.github.io/)
 
 ## Utils
 

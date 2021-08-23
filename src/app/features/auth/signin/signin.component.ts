@@ -1,3 +1,6 @@
+import { ToastHelper } from "@shared/helpers/toast.helper";
+import { IMensageToast } from "@model/message-toast.model";
+import { ToastTypeEnum } from "@shared/enum/toast.enum";
 import { AuthService } from "@core/services/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
@@ -45,8 +48,18 @@ export class SigninComponent implements OnInit {
 	async onSubmit() {
 		try {
 			await this.authService.login(this.formSignin.value);
+
+			const messageToast: IMensageToast = {
+				title: ToastTypeEnum.SUCCESS,
+				type: ToastTypeEnum.SUCCESS,
+				description: "Cadastro realizado com sucesso!"
+			};
+
+			ToastHelper.showMiniToast(messageToast);
 		} catch (error) {
 			console.error(error);
+
+			ToastHelper.showMiniToast(error);
 		}
 	}
 
