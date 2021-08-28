@@ -1,3 +1,7 @@
+import { ToastHelper } from "@shared/helpers/toast.helper";
+import { ToastTypeEnum } from "@shared/enum/toast.enum";
+import { IMensageToast } from "@model/message-toast.model";
+import { LoadingService } from "@core/services/loading.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "@core/services/auth.service";
@@ -23,7 +27,8 @@ export class SignupComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private loadingService: LoadingService
 	) {}
 
 	ngOnInit() {
@@ -59,10 +64,26 @@ export class SignupComponent implements OnInit {
 	}
 
 	async onSubmit() {
+		this.loadingService.show();
+
 		try {
 			await this.authService.signup(this.formSignup.value);
+
+			const messageToast: IMensageToast = {
+				title: ToastTypeEnum.SUCCESS,
+				type: ToastTypeEnum.SUCCESS,
+				description: "Cadastro realizado com sucesso!"
+			};
+
+			this.loadingService.close();
+
+			ToastHelper.showMiniToast(messageToast);
 		} catch (error) {
 			console.error(error);
+
+			this.loadingService.close();
+
+			ToastHelper.showMiniToast(error);
 		}
 	}
 

@@ -1,3 +1,4 @@
+import { LoadingService } from "@core/services/loading.service";
 import { ToastHelper } from "@shared/helpers/toast.helper";
 import { IMensageToast } from "@model/message-toast.model";
 import { ToastTypeEnum } from "@shared/enum/toast.enum";
@@ -17,7 +18,8 @@ export class SigninComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private loadingService: LoadingService
 	) {}
 
 	ngOnInit() {
@@ -46,18 +48,24 @@ export class SigninComponent implements OnInit {
 	}
 
 	async onSubmit() {
+		this.loadingService.show();
+
 		try {
 			await this.authService.login(this.formSignin.value);
 
 			const messageToast: IMensageToast = {
 				title: ToastTypeEnum.SUCCESS,
 				type: ToastTypeEnum.SUCCESS,
-				description: "Cadastro realizado com sucesso!"
+				description: "Login realizado com sucesso!"
 			};
+
+			this.loadingService.close();
 
 			ToastHelper.showMiniToast(messageToast);
 		} catch (error) {
 			console.error(error);
+
+			this.loadingService.close();
 
 			ToastHelper.showMiniToast(error);
 		}
