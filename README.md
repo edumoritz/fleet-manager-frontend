@@ -5,10 +5,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
-## Theme Dark and Light
+## Demo
 
-![Theme Dark Preview](.github/dark.png)
-![Theme Dark Preview](.github/light.png)
+<!-- ![Theme Dark Preview](.github/dark.png)
+![Theme Dark Preview](.github/light.png) -->
+
+![Demo App](.github/fleet-manager-front.gif)
 
 ## Tecnologies
 
@@ -26,3 +28,5 @@ This project was developed using:
 ## Backend Prod NestJS
 
 <a href="https://fleet-manager-backend.herokuapp.com/docs" target="_blank">Heroku NestJS</a>
+
+node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css

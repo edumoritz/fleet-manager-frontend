@@ -1,6 +1,9 @@
-import { HttpClientModule } from "@angular/common/http";
+import { PasswordModule } from "primeng/password";
+import { DropdownModule } from "primeng/dropdown";
+import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
+import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -8,17 +11,20 @@ import { CommonModule } from "@angular/common";
 	declarations: [],
 	imports: [
 		CommonModule,
+		RouterModule,
 		FormsModule,
-		ReactiveFormsModule,
-		HttpClientModule,
-		RouterModule
+		ButtonModule,
+		InputTextModule,
+		PasswordModule,
+		DropdownModule
 	],
 	exports: [
 		CommonModule,
 		FormsModule,
-		ReactiveFormsModule,
-		HttpClientModule,
-		RouterModule
+		ButtonModule,
+		InputTextModule,
+		PasswordModule,
+		DropdownModule
 	]
 })
 export class SharedModule {}

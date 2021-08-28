@@ -1,5 +1,5 @@
-import { AuthGuard } from "./core/guards/auth.guard";
 import { HomeComponent } from "./features/home/home.component";
+import { AuthGuard } from "./core/guards/auth.guard";
 
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -10,6 +10,13 @@ const routes: Routes = [
 		component: HomeComponent,
 		canActivate: [AuthGuard]
 	}
+	// {
+	//     path: '**',
+	//     redirectTo: NAO ENCONTRADO
+	// }
+
+	// loadChildren: () =>
+	// 		import("./features/home/home.module").then((m) => m.HomeModule),
 ];
 
 @NgModule({
