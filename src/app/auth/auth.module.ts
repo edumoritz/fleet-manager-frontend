@@ -6,9 +6,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { SignupComponent } from "./signup/signup.component";
 import { SigninComponent } from "./signin/signin.component";
 import { RouterModule, Routes } from "@angular/router";
-import { SharedModule } from "./../../shared/shared.module";
 import { NgModule } from "@angular/core";
 import { AuthComponent } from "./auth.component";
+import { SharedModule } from "@shared/shared.module";
 
 const routes: Routes = [
 	{ path: "signin", component: SigninComponent },

@@ -14,12 +14,6 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {}
 
-	testeLoading() {
-		this.loadingService.show();
-
-		// setTimeout(() => this.loadingService.close(), 5000);
-	}
-
 	logout() {
 		this.authService.logout();
 	}

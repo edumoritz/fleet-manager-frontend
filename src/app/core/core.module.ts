@@ -1,3 +1,4 @@
+import { AuthModule } from "./../auth/auth.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
@@ -7,7 +8,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LoadingModule } from "@shared/components/loading/loading.module";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
-import { AuthModule } from "@features/auth/auth.module";
 
 @NgModule({
 	declarations: [],
