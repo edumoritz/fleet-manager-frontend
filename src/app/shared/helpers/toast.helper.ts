@@ -18,7 +18,7 @@ export class ToastHelper {
 			toast: true,
 			position: "top",
 			showConfirmButton: false,
-			timer: message.type === ToastTypeEnum.WARNING ? 5000 : 3000,
+			timer: message.type === ToastTypeEnum.WARNING ? 3000 : 1000,
 			timerProgressBar: true,
 			didOpen: (toast) => {
 				toast.addEventListener("mouseenter", Swal.stopTimer);

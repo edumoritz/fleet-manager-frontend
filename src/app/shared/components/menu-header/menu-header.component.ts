@@ -1,5 +1,5 @@
 import { AuthService } from "@core/services/auth.service";
-import { MenuItem } from "primeng/api";
+import { MenuItem, PrimeIcons } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -10,32 +10,14 @@ import { Component, OnInit } from "@angular/core";
 export class MenuHeaderComponent implements OnInit {
 	items: MenuItem[];
 
-	activeItem: MenuItem;
-
 	constructor(private authService: AuthService) {}
 
 	ngOnInit() {
 		this.items = [
-			{ label: "Home", icon: "pi pi-fw pi-home" },
+			{ label: "Home", icon: PrimeIcons.HOME },
 			{
 				label: "Cadastros",
-				icon: "pi pi-fw pi-plus",
-				items: [
-					{ label: "Pessoa" },
-					{ label: "Usuario" },
-					{ label: "Empresa" },
-					{ label: "CNH" },
-					{ label: "Veiculo" },
-					{ label: "Telefone" },
-					{ label: "Corrida" },
-					{ label: "Manutenção" },
-					{ label: "Abastecimento" },
-					{ label: "Infração" }
-				]
-			},
-			{
-				label: "Editar",
-				icon: "pi pi-fw pi-pencil",
+				icon: PrimeIcons.PLUS,
 				items: [
 					{ label: "Pessoa" },
 					{ label: "Usuario" },
@@ -51,7 +33,7 @@ export class MenuHeaderComponent implements OnInit {
 			},
 			{
 				label: "Listar",
-				icon: "pi pi-fw pi-list",
+				icon: PrimeIcons.LIST,
 				items: [
 					{ label: "Pessoa" },
 					{ label: "Usuario" },
@@ -66,12 +48,10 @@ export class MenuHeaderComponent implements OnInit {
 				]
 			},
 			{
-				label: "Logout",
-				icon: "pi pi-fw pi-power-off",
+				label: "Sair",
+				icon: PrimeIcons.POWER_OFF,
 				command: () => this.authService.logout()
 			}
 		];
-
-		this.activeItem = this.items[0];
 	}
 }

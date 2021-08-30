@@ -1,3 +1,8 @@
+ng-component {
+	width: 100vw !important;
+	height: 100vh !important;
+}
+
 .container {
 	background: var(--background);
 	color: var(--on-background);
@@ -6,6 +11,8 @@
 .theme-eye {
 	position: absolute;
 	right: 0;
+	margin-top: 3px;
+	z-index: 5000;
 }
 
 section {
