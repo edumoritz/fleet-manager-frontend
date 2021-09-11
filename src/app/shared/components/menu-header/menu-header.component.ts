@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { AuthService } from "@core/services/auth.service";
 import { MenuItem, PrimeIcons } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
@@ -10,16 +11,23 @@ import { Component, OnInit } from "@angular/core";
 export class MenuHeaderComponent implements OnInit {
 	items: MenuItem[];
 
-	constructor(private authService: AuthService) {}
+	constructor(private authService: AuthService, private router: Router) {}
 
 	ngOnInit() {
 		this.items = [
-			{ label: "Home", icon: PrimeIcons.HOME },
+			{
+				label: "Home",
+				icon: PrimeIcons.HOME,
+				command: () => this.router.navigate([""])
+			},
 			{
 				label: "Cadastros",
 				icon: PrimeIcons.PLUS,
 				items: [
-					{ label: "Pessoa" },
+					{
+						label: "Pessoa",
+						command: () => this.router.navigate(["people/register"])
+					},
 					{ label: "Usuario" },
 					{ label: "Empresa" },
 					{ label: "CNH" },
@@ -35,7 +43,10 @@ export class MenuHeaderComponent implements OnInit {
 				label: "Listar",
 				icon: PrimeIcons.LIST,
 				items: [
-					{ label: "Pessoa" },
+					{
+						label: "Pessoa",
+						command: () => this.router.navigate(["people/list"])
+					},
 					{ label: "Usuario" },
 					{ label: "Empresa" },
 					{ label: "CNH" },

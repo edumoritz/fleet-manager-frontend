@@ -1,4 +1,3 @@
-import { HomeModule } from "./home/home.module";
 import { ButtonModule } from "primeng/button";
 import { themeStorage } from "./shared/theme/theme-storage";
 import { darkTheme } from "./shared/theme/dark-theme";
@@ -15,7 +14,6 @@ import { AuthModule } from "./auth/auth.module";
 	declarations: [AppComponent],
 	imports: [
 		AppRoutingModule,
-		HomeModule,
 		CoreModule,
 		AuthModule,
 		ButtonModule,
