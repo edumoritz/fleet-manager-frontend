@@ -9,6 +9,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
+import { MenuHeaderModule } from "@shared/components/menu-header/menu-header.module";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { AuthModule } from "./auth/auth.module";
 		CoreModule,
 		AuthModule,
 		ButtonModule,
+		MenuHeaderModule,
 		ThemeModule.forRoot({
 			themes: [lightTheme, darkTheme],
 			active: themeStorage()

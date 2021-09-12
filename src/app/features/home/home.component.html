@@ -20,3 +20,45 @@
 		consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.
 	</div>
 </div>
+
+<div class="flex justify-content-evenly flex-wrap">
+	<div class="field">
+		<h4>Corridas</h4>
+		<p-knob
+			[(ngModel)]="runs"
+			[readonly]="true"
+			[min]="0"
+			[max]="100"
+		></p-knob>
+	</div>
+
+	<div class="field">
+		<h4>Clientes</h4>
+		<p-knob
+			[(ngModel)]="clients"
+			[readonly]="true"
+			[min]="0"
+			[max]="100"
+		></p-knob>
+	</div>
+
+	<div class="field">
+		<h4>Condutores</h4>
+		<p-knob
+			[(ngModel)]="conductors"
+			[readonly]="true"
+			[min]="0"
+			[max]="100"
+		></p-knob>
+	</div>
+
+	<div class="field">
+		<h4>Veiculos</h4>
+		<p-knob
+			[(ngModel)]="vehicles"
+			[readonly]="true"
+			[min]="0"
+			[max]="100"
+		></p-knob>
+	</div>
+</div>

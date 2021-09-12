@@ -6,6 +6,14 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+	runs = 50;
+
+	clients = 30;
+
+	conductors = 25;
+
+	vehicles = 20;
+
 	constructor() {}
 
 	ngOnInit() {}

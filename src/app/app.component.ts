@@ -1,6 +1,7 @@
 import { ThemeService } from "./shared/theme/theme.service";
 import { Component, ViewEncapsulation } from "@angular/core";
 import { ThemeStorageService } from "@stores/theme-storage.service";
+import { AuthService } from "@core/services/auth.service";
 
 @Component({
 	selector: "app-root",
@@ -11,8 +12,13 @@ import { ThemeStorageService } from "@stores/theme-storage.service";
 export class AppComponent {
 	constructor(
 		private themeService: ThemeService,
-		private themeStorageService: ThemeStorageService
+		private themeStorageService: ThemeStorageService,
+		private accountService: AuthService
 	) {}
+
+	get userLogged() {
+		return this.accountService.isUserLoggedIn();
+	}
 
 	toggle() {
 		const active = this.themeService.getActiveTheme();
