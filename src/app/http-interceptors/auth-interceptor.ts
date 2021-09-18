@@ -1,21 +1,24 @@
-import { IMensageToast } from "@model/message-toast.model";
+import { ExceptionServer } from "./../model/exception-server.model";
 import { AuthService } from "./../core/services/auth.service";
 import { Injectable } from "@angular/core";
 import {
 	HttpInterceptor,
 	HttpRequest,
 	HttpHandler,
-	HttpErrorResponse
+	HttpErrorResponse,
+	HttpEvent
 } from "@angular/common/http";
-import { throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { ToastTypeEnum } from "@shared/enum/toast.enum";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 	constructor(private accountService: AuthService) {}
 
-	intercept(req: HttpRequest<any>, next: HttpHandler) {
+	intercept(
+		req: HttpRequest<any>,
+		next: HttpHandler
+	): Observable<HttpEvent<any>> {
 		const token = this.accountService.getAuthorizationToken();
 		let request: HttpRequest<any> = req;
 
@@ -31,14 +34,18 @@ export class AuthInterceptor implements HttpInterceptor {
 	}
 
 	private handleError(error: HttpErrorResponse) {
-		const { message } = error.error as ErrorEvent;
+		const {
+			message,
+			statusCode,
+			error: errorType
+		} = error.error as ExceptionServer;
 
-		const messageToast: IMensageToast = {
-			title: ToastTypeEnum.ERROR,
-			type: ToastTypeEnum.ERROR,
-			description: message
+		const exceptionServer: ExceptionServer = {
+			statusCode,
+			message,
+			error: errorType
 		};
 
-		return throwError(messageToast);
+		return throwError(exceptionServer);
 	}
 }

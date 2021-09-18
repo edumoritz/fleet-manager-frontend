@@ -1,65 +1,97 @@
+import { ExceptionServer } from "./../../model/exception-server.model";
+import { User } from "./../models/user.model";
+import { ToastTypeEnum } from "@shared/enum/toast.enum";
+import { ToastHelper } from "@shared/helpers/toast.helper";
+import { LoadingService } from "./loading.service";
 import { Router } from "@angular/router";
-import { environment } from "./../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import jwt_decode from "jwt-decode";
 import { TokenStorageService } from "@stores/token-storage.service";
-
-interface TokenDTO {
-	accessToken: string;
-}
+import { AuthenticationFacade } from "@core/facades/authentication.facade";
+import { take } from "rxjs/operators";
 
 @Injectable({
 	providedIn: "root"
 })
 export class AuthService {
 	constructor(
-		private http: HttpClient,
 		private router: Router,
-		private tokenStorageService: TokenStorageService
+		private tokenStorageService: TokenStorageService,
+		private authenticationFacade: AuthenticationFacade,
+		private loadingService: LoadingService
 	) {}
 
-	async login(user: any) {
-		const result = await this.http
-			.post<TokenDTO>(`${environment.api_url}/auth/signin`, user)
-			.toPromise();
+	login(user: User) {
+		this.loadingService.show();
 
-		if (result && result.accessToken) {
-			this.tokenStorageService.saveAuthToken(result.accessToken);
+		this.authenticationFacade
+			.login(user)
+			.pipe(take(1))
+			.subscribe(
+				(result) => {
+					if (result && result.accessToken) {
+						this.loadingService.close();
 
-			// console.log("Login efetuado: ", result);
+						ToastHelper.showMiniToast({
+							type: ToastTypeEnum.SUCCESS,
+							description: "Login realizado com sucesso!"
+						});
 
-			this.router.navigate([""]);
+						this.tokenStorageService.saveAuthToken(
+							result.accessToken
+						);
 
-			return true;
-		}
+						this.router.navigate([""]);
+					}
+				},
+				(error: ExceptionServer) => {
+					console.log("error: ", error);
 
-		return false;
+					if (error.statusCode === 401) {
+						ToastHelper.showMessage({
+							type: ToastTypeEnum.WARNING,
+							description: error.message
+						});
+					} else {
+						ToastHelper.showMessage({
+							type: ToastTypeEnum.ERROR,
+							description: error.message
+						});
+					}
+
+					this.loadingService.close();
+				}
+			);
 	}
 
-	async signup(user: any) {
-		const result = await this.http
-			.post<TokenDTO>(`${environment.api_url}/auth/signup`, user)
-			.toPromise();
+	signup(user: User) {
+		this.loadingService.show();
 
-		if (result && result.accessToken) {
-			this.tokenStorageService.saveAuthToken(result.accessToken);
+		this.authenticationFacade
+			.signup(user)
+			.pipe(take(1))
+			.subscribe(
+				() => {
+					this.loadingService.close();
 
-			// console.log("Login efetuado");
+					ToastHelper.showMessage({
+						type: ToastTypeEnum.SUCCESS,
+						description: "Agora é só aguardar para ser aprovado!"
+					});
 
-			this.router.navigate([""]);
+					this.router.navigate(["signin"]);
+				},
+				(error: ExceptionServer) => {
+					console.error(error);
 
-			return true;
-		}
+					this.loadingService.close();
 
-		return false;
-	}
-
-	async createAccount(account: any) {
-		const result = await this.http
-			.post<TokenDTO>(`${environment.api_url}/users`, account)
-			.toPromise();
-		return result;
+					ToastHelper.showMiniToast({
+						type: ToastTypeEnum.ERROR,
+						description: "Ocorreu um erro no cadastro!"
+					});
+				}
+			);
 	}
 
 	getAuthorizationToken() {

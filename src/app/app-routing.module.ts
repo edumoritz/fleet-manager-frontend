@@ -1,22 +1,16 @@
-import { HomeComponent } from "./features/home/home.component";
-import { AuthGuard } from "./core/guards/auth.guard";
-
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
 	{
 		path: "",
-		component: HomeComponent,
-		canActivate: [AuthGuard]
+		loadChildren: () =>
+			import("./features/features.module").then((m) => m.FeaturesModule)
 	}
 	// {
 	//     path: '**',
 	//     redirectTo: NAO ENCONTRADO
 	// }
-
-	// loadChildren: () =>
-	// 		import("./features/home/home.module").then((m) => m.HomeModule),
 ];
 
 @NgModule({

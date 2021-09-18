@@ -1,4 +1,4 @@
-# FleetManagerFrontend
+# Fleet Manager Frontend
 
 [![Author](https://img.shields.io/badge/author-edumoritz-blue?style=flat-square)](https://github.com/edumoritz)
 [![Languages](https://img.shields.io/github/languages/count/edumoritz/fleet-manager-frontend?color=blue&style=flat-square)](#)
@@ -28,5 +28,3 @@ This project was developed using:
 ## Backend Prod NestJS
 
 <a href="https://fleet-manager-backend.herokuapp.com/docs" target="_blank">Heroku NestJS</a>
-
-node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css
