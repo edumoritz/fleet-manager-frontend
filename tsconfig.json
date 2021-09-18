@@ -25,7 +25,7 @@
       "@auth/*": ["app/auth/*"],
       "@core/*": ["app/core/*"],
       "@shared/*": ["app/shared/*"],
-      "@environments/*": ["app/environments/*"],
+      "@environments/*": ["environments/*"],
       "@features/*": ["app/features/*"],
       "@model/*": ["app/model/*"],
       "@stores/*": ["app/stores/*"],

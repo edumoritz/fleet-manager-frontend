@@ -1,4 +1,8 @@
+import { ToastTypeEnum } from "@shared/enum/toast.enum";
+import { ToastHelper } from "@shared/helpers/toast.helper";
+import { LoadingService } from "@core/services/loading.service";
 import { Component, OnInit } from "@angular/core";
+import { HomeService } from "@core/services/home.service";
 
 @Component({
 	selector: "app-home",
@@ -6,15 +10,43 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-	runs = 50;
+	runs: number;
 
-	clients = 30;
+	clients: number;
 
-	conductors = 25;
+	conductors: number;
 
-	vehicles = 20;
+	vehicles: number;
 
-	constructor() {}
+	constructor(
+		private homeService: HomeService,
+		private loadingService: LoadingService
+	) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.getStatistics();
+	}
+
+	async getStatistics() {
+		this.loadingService.show();
+
+		try {
+			const statistics = await this.homeService.getStatistics();
+
+			this.runs = statistics.running;
+			this.clients = statistics.clients;
+			this.conductors = statistics.conductors;
+			this.vehicles = statistics.vehicles;
+
+			this.loadingService.close();
+		} catch (error) {
+			this.loadingService.close();
+
+			ToastHelper.showMiniToast({
+				title: ToastTypeEnum.ERROR,
+				type: ToastTypeEnum.ERROR,
+				description: "Ocorreu um erro ao pesquisas estatisticas!"
+			});
+		}
+	}
 }

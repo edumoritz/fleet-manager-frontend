@@ -5,11 +5,13 @@ import { IMensageToast } from "@model/message-toast.model";
 export class ToastHelper {
 	static showMessage(message: IMensageToast) {
 		Swal.fire({
-			position: "top",
-			title: message.type.toUpperCase(),
+			position: "center",
+			title: message.title
+				? message.title.toUpperCase()
+				: message.type.toUpperCase(),
 			text: message.description.toUpperCase(),
 			icon: message.type,
-			timer: message.type === ToastTypeEnum.WARNING ? 5000 : 3000
+			timer: 5000
 		});
 	}
 
