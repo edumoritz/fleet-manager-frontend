@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 <!-- ![Theme Dark Preview](.github/dark.png)
 ![Theme Dark Preview](.github/light.png) -->
 
-![Demo App](.github/fleet-manager-front.gif)
+![Demo App](.github/fleet-manager-front1.gif)
 
 ## Tecnologies
 
