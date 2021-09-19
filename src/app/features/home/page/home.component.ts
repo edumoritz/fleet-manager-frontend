@@ -3,6 +3,7 @@ import { ToastHelper } from "@shared/helpers/toast.helper";
 import { LoadingService } from "@core/services/loading.service";
 import { Component, OnInit } from "@angular/core";
 import { HomeService } from "@core/services/home.service";
+import { IsActiveMatchOptions, Router } from "@angular/router";
 
 @Component({
 	selector: "app-home",
@@ -18,9 +19,12 @@ export class HomeComponent implements OnInit {
 
 	vehicles: number;
 
+	MAXIMUM_SIZE = 20;
+
 	constructor(
 		private homeService: HomeService,
-		private loadingService: LoadingService
+		private loadingService: LoadingService,
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -48,5 +52,16 @@ export class HomeComponent implements OnInit {
 				description: "Ocorreu um erro ao pesquisas estatisticas!"
 			});
 		}
+	}
+
+	isActive(): boolean {
+		const marchOptions: IsActiveMatchOptions = {
+			paths: "exact",
+			matrixParams: "ignored",
+			fragment: "ignored",
+			queryParams: "ignored"
+		};
+
+		return this.router.isActive("/", marchOptions);
 	}
 }

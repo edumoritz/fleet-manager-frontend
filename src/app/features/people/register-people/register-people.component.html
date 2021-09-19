@@ -1,1 +1,36 @@
-<p>register-people works!</p>
+<div>register</div>
+<!-- <div class="container flex align-items-center justify-content-center">
+	<div class="flex flex-column">
+		<div class="field text-center">
+			<h1>Registro de Pessoa</h1>
+			<p>Preencha os campos para cadastrar uma pessoa</p>
+		</div>
+
+		<form [formGroup]="formPeople" (ngSubmit)="onSubmit()" #form="ngForm">
+			<div class="flex flex-column mt-2">
+				<label for="name">Nome</label>
+				<input
+					type="text"
+					name="name"
+					pInputText
+					formControlName="name"
+					required
+				/>
+
+				<ng-template
+					[ngIf]="name?.invalid && (name?.dirty || name?.touched)"
+				>
+					<div *ngIf="name?.errors?.required" class="alert">
+						Nome é obrigatório
+					</div>
+
+					<div *ngIf="name?.errors?.minlength" class="alert">
+						Nome deve ter no minímo 3 caracteres
+					</div>
+				</ng-template>
+			</div>
+
+		</form>
+
+	</div>
+</div> -->

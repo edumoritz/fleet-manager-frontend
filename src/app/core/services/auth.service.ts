@@ -1,3 +1,4 @@
+import { Observable, ReplaySubject } from "rxjs";
 import { ExceptionServer } from "./../../model/exception-server.model";
 import { User } from "./../models/user.model";
 import { ToastTypeEnum } from "@shared/enum/toast.enum";
@@ -14,6 +15,8 @@ import { take } from "rxjs/operators";
 	providedIn: "root"
 })
 export class AuthService {
+	private _isAuthenticated = new ReplaySubject<boolean>(1);
+
 	constructor(
 		private router: Router,
 		private tokenStorageService: TokenStorageService,
@@ -142,6 +145,12 @@ export class AuthService {
 	logout() {
 		this.tokenStorageService.removeTokens();
 
+		this._isAuthenticated.next(false);
+
 		this.router.navigate(["/login"]);
+	}
+
+	get isAuthenticated(): Observable<boolean> {
+		return this._isAuthenticated.asObservable();
 	}
 }
