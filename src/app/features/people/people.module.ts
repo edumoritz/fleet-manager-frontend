@@ -1,3 +1,6 @@
+import { DataPersonComponent } from "./list-people/data-person/data-person.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "@shared/shared.module";
 import { PeopleComponent } from "./people.component";
 import { ListPeopleComponent } from "./list-people/list-people.component";
 import { RegisterPeopleComponent } from "./register-people/register-people.component";
@@ -24,11 +27,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes)],
+	imports: [SharedModule, ReactiveFormsModule, RouterModule.forChild(routes)],
 	declarations: [
 		PeopleComponent,
 		ListPeopleComponent,
-		RegisterPeopleComponent
+		RegisterPeopleComponent,
+		DataPersonComponent
 	],
 	exports: [PeopleComponent]
 })
