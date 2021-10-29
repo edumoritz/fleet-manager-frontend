@@ -1,12 +1,9 @@
-<div class="flex flex-column">
-	<div class="text-center m-5">
-		<h1>Lista de Pessoas</h1>
-		<p>Lista de pessoas cadastradas</p>
-	</div>
+<fleet-page-header
+	title="Lista de Pessoas"
+	subtitle="Lista de pessoas cadastradas"
+></fleet-page-header>
 
-	<fleet-data-person
-		*ngFor="let person of data; let i = index"
-		[person]="person"
-		[index]="i"
-	></fleet-data-person>
-</div>
+<fleet-data-person
+	[listPeople]="data"
+	[pagination]="pagination"
+></fleet-data-person>

@@ -1,4 +1,3 @@
-import { DataPersonComponent } from "./list-people/data-person/data-person.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "@shared/shared.module";
 import { PeopleComponent } from "./people.component";
@@ -6,6 +5,8 @@ import { ListPeopleComponent } from "./list-people/list-people.component";
 import { RegisterPeopleComponent } from "./register-people/register-people.component";
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
+import { DataPersonComponent } from "./components/data-person/data-person.component";
+import { PageHeaderModule } from "@shared/components/page-header/page-header.module";
 
 const routes: Routes = [
 	{
@@ -27,7 +28,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [SharedModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+	imports: [
+		SharedModule,
+		ReactiveFormsModule,
+		PageHeaderModule,
+		RouterModule.forChild(routes)
+	],
 	declarations: [
 		PeopleComponent,
 		ListPeopleComponent,

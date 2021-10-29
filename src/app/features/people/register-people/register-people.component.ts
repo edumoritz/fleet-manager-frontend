@@ -60,7 +60,7 @@ export class RegisterPeopleComponent implements OnInit {
 		console.log(this.formPeople.value);
 	}
 
-	get gettype() {
+	get getType() {
 		return typeof this.formPeople.controls.registration_number;
 	}
 }

@@ -1,6 +1,6 @@
 import { ToastTypeEnum } from "@shared/enum/toast.enum";
 import Swal from "sweetalert2";
-import { IMensageToast } from "@model/message-toast.model";
+import { IMensageToast } from "@shared/interfaces/message-toast.model";
 
 export class ToastHelper {
 	static showMessage(message: IMensageToast) {

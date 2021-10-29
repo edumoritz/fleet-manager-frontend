@@ -6,6 +6,8 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TableModule } from "primeng/table";
+import { ToolbarModule } from "primeng/toolbar";
 
 @NgModule({
 	declarations: [],
@@ -16,7 +18,9 @@ import { CommonModule } from "@angular/common";
 		ButtonModule,
 		InputTextModule,
 		PasswordModule,
-		DropdownModule
+		DropdownModule,
+		TableModule,
+		ToolbarModule
 	],
 	exports: [
 		CommonModule,
@@ -24,7 +28,9 @@ import { CommonModule } from "@angular/common";
 		ButtonModule,
 		InputTextModule,
 		PasswordModule,
-		DropdownModule
+		DropdownModule,
+		TableModule,
+		ToolbarModule
 	]
 })
 export class SharedModule {}
