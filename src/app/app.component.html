@@ -6,7 +6,7 @@
 	(click)="toggle()"
 ></button>
 
-<div theme class="container">
-	<app-menu-header *ngIf="userLogged"></app-menu-header>
+<div theme class="theme">
+	<fleet-menu-header *ngIf="userLogged"></fleet-menu-header>
 	<router-outlet></router-outlet>
 </div>

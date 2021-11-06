@@ -2,18 +2,13 @@
 	width: 100%;
 }
 
-:host ::ng-deep .container {
+:host ::ng-deep .login-contatiner {
 	width: 100vw;
 	height: 100vh;
 }
 
-.field {
-	h1 {
-		margin-bottom: 4px;
-	}
-}
-
 .alert {
 	margin: 4px;
+	padding: 0;
 	color: var(--danger-2-strong);
 }

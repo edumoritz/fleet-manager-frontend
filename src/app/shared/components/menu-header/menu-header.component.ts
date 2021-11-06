@@ -4,7 +4,7 @@ import { MenuItem, PrimeIcons } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "app-menu-header",
+	selector: "fleet-menu-header",
 	templateUrl: "./menu-header.component.html",
 	styleUrls: ["./menu-header.component.scss"]
 })

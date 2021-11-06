@@ -1,0 +1,51 @@
+:host ::ng-deep .p-toolbar {
+	border-color: var(--on-primary);
+	background: var(--secondary);
+}
+
+:host ::ng-deep .p-datatable .p-datatable-wrapper .p-datatable-table {
+	.p-datatable-thead tr th {
+		color: var(--on-primary);
+		border-color: var(--secondary);
+		background: var(--secondary);
+	}
+	.p-datatable-tbody tr td {
+		border-color: var(--secondary);
+		background: var(--secondary);
+	}
+}
+
+:host ::ng-deep .p-paginator {
+	border-color: var(--secondary);
+	background: var(--secondary);
+
+	.p-paginator-current {
+		border-color: var(--secondary);
+		background: var(--secondary);
+		color: var(--on-text-color);
+	}
+
+	button {
+		color: var(--on-text-color);
+	}
+
+	.p-paginator-pages .ng-star-inserted {
+		background-color: var(--secondary);
+	}
+
+	.p-dropdown {
+		background-color: var(--secondary);
+		border-color: var(--on-text-color);
+		color: var(--on-text-color);
+
+		span {
+			color: var(--on-text-color);
+		}
+	}
+
+	.p-dropdown-panel {
+		background-color: var(--secondary);
+		border-color: var(--on-text-color);
+		color: var(--on-text-color);
+	}
+}

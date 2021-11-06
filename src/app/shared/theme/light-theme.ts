@@ -9,9 +9,11 @@ export const lightTheme: Theme = {
 		"--on-primary": "#fff",
 		"--secondary": "#a8a8a8",
 		"--on-secondary": "#fff",
-		"--surface": "#fff",
 		"--on-surface": "#000",
 		"--error": "#E74E3C",
-		"--on-error": "#fff"
+		"--on-error": "#fff",
+		"--text-color": "#000",
+		"--on-text-color": "#000",
+		"--toobar-background": "#a8a8a8"
 	}
 };
