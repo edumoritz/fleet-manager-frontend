@@ -12,9 +12,8 @@ export const darkTheme: Theme = {
 		"--on-surface": "#dddede",
 		"--error": "#E74E3C",
 		"--on-error": "#fff",
-		"--text-color": "#fff",
-		"--on-text-color": "#000",
-		"--table-tbody-background": "#C1C1C1",
-		"--table-pagination-background": "#E3E1E1"
+		"--color-primary": "#fff",
+		"--color-secondary": "#000",
+		"--background-secondary": "#C1C1C1"
 	}
 };

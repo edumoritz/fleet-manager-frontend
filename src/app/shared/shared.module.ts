@@ -8,6 +8,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
+import { PanelModule } from "primeng/panel";
 
 @NgModule({
 	declarations: [],
@@ -20,7 +21,8 @@ import { ToolbarModule } from "primeng/toolbar";
 		PasswordModule,
 		DropdownModule,
 		TableModule,
-		ToolbarModule
+		ToolbarModule,
+		PanelModule
 	],
 	exports: [
 		CommonModule,
@@ -30,7 +32,8 @@ import { ToolbarModule } from "primeng/toolbar";
 		PasswordModule,
 		DropdownModule,
 		TableModule,
-		ToolbarModule
+		ToolbarModule,
+		PanelModule
 	]
 })
 export class SharedModule {}
