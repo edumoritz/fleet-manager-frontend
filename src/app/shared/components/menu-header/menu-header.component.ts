@@ -4,7 +4,7 @@ import { MenuItem, PrimeIcons } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "app-menu-header",
+	selector: "fleet-menu-header",
 	templateUrl: "./menu-header.component.html",
 	styleUrls: ["./menu-header.component.scss"]
 })
@@ -28,11 +28,8 @@ export class MenuHeaderComponent implements OnInit {
 						label: "Pessoa",
 						command: () => this.router.navigate(["people/register"])
 					},
-					{ label: "Usuario" },
 					{ label: "Empresa" },
-					{ label: "CNH" },
 					{ label: "Veiculo" },
-					{ label: "Telefone" },
 					{ label: "Corrida" },
 					{ label: "Manutenção" },
 					{ label: "Abastecimento" },
@@ -47,11 +44,8 @@ export class MenuHeaderComponent implements OnInit {
 						label: "Pessoa",
 						command: () => this.router.navigate(["people/list"])
 					},
-					{ label: "Usuario" },
 					{ label: "Empresa" },
-					{ label: "CNH" },
 					{ label: "Veiculo" },
-					{ label: "Telefone" },
 					{ label: "Corrida" },
 					{ label: "Manutenção" },
 					{ label: "Abastecimento" },

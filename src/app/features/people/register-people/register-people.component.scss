@@ -1,0 +1,22 @@
+:host ::ng-deep {
+	.p-panel {
+		margin-bottom: 5px;
+
+		.p-panel-header {
+			background-color: var(--secondary);
+			border-color: var(--secondary);
+			color: var(--color-primary);
+		}
+
+		.p-panel-content {
+			background-color: var(--background-secondary);
+			border-color: var(--background-secondary);
+			color: var(--secondary);
+		}
+	}
+}
+
+.message-error {
+	margin: 4px;
+	color: var(--danger-2-strong);
+}

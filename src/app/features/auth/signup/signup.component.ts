@@ -1,6 +1,3 @@
-import { ToastHelper } from "@shared/helpers/toast.helper";
-import { ToastTypeEnum } from "@shared/enum/toast.enum";
-import { LoadingService } from "@core/services/loading.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "@core/services/auth.service";
@@ -12,7 +9,6 @@ interface TypeUser {
 }
 
 @Component({
-	selector: "app-signup",
 	templateUrl: "./signup.component.html",
 	styleUrls: ["./signup.component.scss"]
 })
@@ -26,8 +22,7 @@ export class SignupComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private fb: FormBuilder,
-		private loadingService: LoadingService
+		private fb: FormBuilder
 	) {}
 
 	ngOnInit() {
@@ -73,7 +68,7 @@ export class SignupComponent implements OnInit {
 	}
 
 	onSignIn() {
-		this.router.navigate(["signin"]);
+		this.router.navigate(["login/signin"]);
 	}
 
 	get username() {

@@ -1,0 +1,56 @@
+:host ::ng-deep {
+	.p-toolbar {
+		border-color: var(--secondary);
+		background: var(--secondary);
+	}
+
+	.p-datatable .p-datatable-wrapper .p-datatable-table {
+		.p-datatable-thead tr th {
+			color: var(--color-primary);
+			border-color: var(--secondary);
+			background: var(--secondary);
+			font-size: large;
+		}
+		.p-datatable-tbody tr td {
+			border-color: var(--secondary);
+			background: var(--secondary);
+			color: var(--color-primary);
+		}
+	}
+
+	.p-paginator {
+		border-color: var(--secondary);
+		background: var(--secondary);
+
+		.p-paginator-current {
+			border-color: var(--secondary);
+			background: var(--secondary);
+			color: var(--color-primary);
+		}
+
+		button {
+			color: var(--secondary);
+		}
+
+		.p-paginator-pages .ng-star-inserted {
+			background: var(--secondary);
+			border-color: var(--color-primary);
+		}
+
+		.p-dropdown {
+			background-color: var(--secondary);
+			border-color: var(--color-primary);
+			color: var(--color-primary);
+
+			span {
+				color: var(--color-primary);
+			}
+		}
+
+		.p-dropdown-panel {
+			background-color: var(--secondary);
+			border-color: var(--color-primary);
+			color: var(--color-primary);
+		}
+	}
+}

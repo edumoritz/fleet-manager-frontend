@@ -1,3 +1,4 @@
+import { MenuHeaderModule } from "@shared/components/menu-header/menu-header.module";
 import { ButtonModule } from "primeng/button";
 import { themeStorage } from "./shared/theme/theme-storage";
 import { darkTheme } from "./shared/theme/dark-theme";
@@ -8,17 +9,14 @@ import { CoreModule } from "./core/core.module";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AuthModule } from "./auth/auth.module";
-import { MenuHeaderModule } from "@shared/components/menu-header/menu-header.module";
 
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
 		AppRoutingModule,
 		CoreModule,
-		AuthModule,
-		ButtonModule,
 		MenuHeaderModule,
+		ButtonModule,
 		ThemeModule.forRoot({
 			themes: [lightTheme, darkTheme],
 			active: themeStorage()

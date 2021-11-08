@@ -1,0 +1,33 @@
+:host ::ng-deep .p-menubar {
+	padding: 0 !important;
+	background: var(--secondary);
+	border-radius: 0;
+
+	.p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+		> .p-menuitem-icon,
+		.p-submenu-icon,
+		.p-menuitem-text {
+			color: var(--on-background);
+		}
+	}
+}
+
+.fleet-container {
+	margin-top: 60px;
+
+	.title {
+		font-size: 50px;
+		font-weight: 600;
+	}
+
+	.text-secondary {
+		margin: 20px;
+	}
+}
+
+.field {
+	h4 {
+		text-align: center;
+		margin-bottom: 5px;
+	}
+}

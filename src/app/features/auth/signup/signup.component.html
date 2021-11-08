@@ -1,18 +1,19 @@
-<div class="container flex align-items-center justify-content-center">
+<div class="login-contatiner flex align-items-center justify-content-center">
 	<div class="flex flex-column">
-		<div class="field text-center">
-			<h1>Login</h1>
-			<p>Preencha seu nome de usuário e senha para fazer login.</p>
+		<div class="text-center">
+			<h1 class="fw-bold">Cadastro</h1>
+			<p>Preencha as informações básicas para se cadastrar no sistema</p>
 		</div>
 
-		<form [formGroup]="formSignin" (ngSubmit)="onSubmit()" #form="ngForm">
+		<form [formGroup]="formSignup" (ngSubmit)="onSubmit()" #form="ngForm">
 			<div class="flex flex-column mt-2">
 				<label for="usuario">Usuario</label>
 				<input
 					type="text"
 					name="username"
-					pInputText
 					formControlName="username"
+					placeholder="Digite aqui o usuário"
+					pInputText
 					required
 				/>
 
@@ -34,6 +35,7 @@
 				<p-password
 					name="password"
 					formControlName="password"
+					placeholder="Digite aqui a senha"
 					[toggleMask]="true"
 					required
 				></p-password>
@@ -51,20 +53,40 @@
 				</ng-template>
 			</div>
 
-			<div class="field mt-4">
-				<p-button
-					type="submit"
-					label="Entrar"
-					[disabled]="formSignin.invalid"
-				></p-button>
+			<div class="flex flex-column mt-2">
+				<label for="typeUser">Tipo usuario</label>
+				<p-dropdown
+					placeholder="Selecione o tipo..."
+					[showClear]="true"
+					[options]="typesUser"
+					[(ngModel)]="selectedTypeUser"
+					(onChange)="changeTypeUser()"
+					[ngModelOptions]="{standalone: true}"
+					optionLabel="value"
+				></p-dropdown>
+
+				<ng-template
+					[ngIf]="getTypeUser?.invalid && (getTypeUser?.dirty || getTypeUser?.touched)"
+				>
+					<div *ngIf="getTypeUser?.errors?.required" class="alert">
+						Tipo usuario é obrigatório
+					</div>
+				</ng-template>
 			</div>
+
+			<p-button
+				class="w-100 mt-4"
+				type="submit"
+				label="Entrar"
+				[disabled]="formSignup.invalid"
+			></p-button>
 		</form>
 
 		<button
 			pButton
 			type="button"
-			label="Não tenho uma conta"
-			(click)="onSignUp()"
+			label="Já tenho uma conta"
+			(click)="onSignIn()"
 			class="p-button-link"
 		></button>
 	</div>

@@ -9,9 +9,11 @@ export const darkTheme: Theme = {
 		"--on-primary": "#fff",
 		"--secondary": "#474A4F",
 		"--on-secondary": "#fff",
-		"--surface": "#282A2F",
 		"--on-surface": "#dddede",
 		"--error": "#E74E3C",
-		"--on-error": "#fff"
+		"--on-error": "#fff",
+		"--color-primary": "#fff",
+		"--color-secondary": "#000",
+		"--background-secondary": "#C1C1C1"
 	}
 };
