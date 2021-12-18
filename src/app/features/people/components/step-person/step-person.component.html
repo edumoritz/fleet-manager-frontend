@@ -1,0 +1,123 @@
+<h5>Informação Pessoal</h5>
+<p>Entre com as informações pessoais</p>
+
+<form [formGroup]="formPeople" #form="ngForm">
+	<div class="flex flex-row">
+		<div class="flex flex-column m-2 w-100">
+			<label for="name">Nome</label>
+			<input
+				type="text"
+				name="name"
+				pInputText
+				formControlName="name"
+				placeholder="Digite aqui o nome"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Nome é obrigatório',
+      errorMin: 'Nome deve ter no minímo 4 caracteres', formControl: formPeople.controls.name }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-100">
+			<label for="last_name">Sobrenome</label>
+			<input
+				type="text"
+				name="last_name"
+				pInputText
+				formControlName="last_name"
+				placeholder="Digite aqui o sobrenome"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Sobrenome é obrigatório',
+      errorMin: 'Sobrenome deve ter no minímo 4 caracteres', formControl: formPeople.controls.last_name }"
+			>
+			</ng-container>
+		</div>
+	</div>
+
+	<div class="flex flex-row">
+		<div class="flex flex-column m-2 w-100">
+			<label for="email">E-mail</label>
+			<input
+				type="text"
+				name="email"
+				pInputText
+				formControlName="email"
+				placeholder="Digite aqui o email"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'email é obrigatório', errorEmail: 'email está inválido', formControl: formPeople.controls.email }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-100">
+			<label for="cpf">CPF</label>
+			<input
+				type="text"
+				name="cpf"
+				pInputText
+				formControlName="cpf"
+				placeholder="Digite aqui o cpf"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'cpf é obrigatório',
+        errorCpf: 'CPF está inválido',
+        formControl: formPeople.controls.cpf }"
+			>
+			</ng-container>
+		</div>
+	</div>
+
+	<div class="mt-4 text-center">
+		<button
+			pButton
+			type="button"
+			class="p-button-secondary"
+			(click)="formPeople.reset()"
+		>
+			Limpar
+		</button>
+		<button pButton type="button" class="ml-3" (click)="nextStep(1)">
+			Proximo
+		</button>
+	</div>
+</form>
+
+<ng-template
+	#ErrorShow
+	let-must="errorMust"
+	let-minimum="errorMin"
+	let-formControl="formControl"
+	let-cpf="errorCpf"
+	let-email="errorEmail"
+>
+	<ng-template
+		[ngIf]="formControl?.invalid && (formControl?.dirty || formControl?.touched)"
+	>
+		<div *ngIf="formControl?.errors?.required" class="message-error">
+			{{ must }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.minlength" class="message-error">
+			{{ minimum }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.email" class="message-error">
+			{{ email }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.pattern" class="message-error">
+			{{ cpf }}
+		</div>
+	</ng-template>
+</ng-template>

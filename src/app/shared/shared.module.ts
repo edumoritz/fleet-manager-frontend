@@ -9,6 +9,9 @@ import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { ToolbarModule } from "primeng/toolbar";
 import { PanelModule } from "primeng/panel";
+import { FieldsetModule } from "primeng/fieldset";
+import { StepsModule } from "primeng/steps";
+import { CardModule } from "primeng/card";
 
 @NgModule({
 	declarations: [],
@@ -22,7 +25,10 @@ import { PanelModule } from "primeng/panel";
 		DropdownModule,
 		TableModule,
 		ToolbarModule,
-		PanelModule
+		PanelModule,
+		FieldsetModule,
+		StepsModule,
+		CardModule
 	],
 	exports: [
 		CommonModule,
@@ -33,7 +39,10 @@ import { PanelModule } from "primeng/panel";
 		DropdownModule,
 		TableModule,
 		ToolbarModule,
-		PanelModule
+		PanelModule,
+		FieldsetModule,
+		StepsModule,
+		CardModule
 	]
 })
 export class SharedModule {}

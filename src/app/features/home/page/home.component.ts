@@ -6,7 +6,7 @@ import { HomeService } from "@core/services/home.service";
 import { IsActiveMatchOptions, Router } from "@angular/router";
 
 @Component({
-	selector: "app-home",
+	selector: "fleet-home",
 	templateUrl: "./home.component.html",
 	styleUrls: ["./home.component.scss"]
 })

@@ -1,3 +1,6 @@
+import { StepPhonesComponent } from "./components/step-phones/step-phones.component";
+import { StepCnhComponent } from "./components/step-cnh/step-cnh.component";
+import { StepPersonComponent } from "./components/step-person/step-person.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "@shared/shared.module";
 import { PeopleComponent } from "./people.component";
@@ -38,7 +41,10 @@ const routes: Routes = [
 		PeopleComponent,
 		ListPeopleComponent,
 		RegisterPeopleComponent,
-		DataPersonComponent
+		DataPersonComponent,
+		StepPersonComponent,
+		StepCnhComponent,
+		StepPhonesComponent
 	],
 	exports: [PeopleComponent]
 })

@@ -1,0 +1,103 @@
+<h5>Informações da CNH</h5>
+<p>Entre com as informações da CNH</p>
+
+<form [formGroup]="formPhone" #form="ngForm">
+	<div class="flex flex-row">
+		<div class="flex flex-column m-2 w-2">
+			<label for="ddi">DDI</label>
+			<input
+				type="text"
+				name="ddi"
+				pInputText
+				formControlName="ddi"
+				placeholder="Digite aqui o ddi"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDI é obrigatório',
+        formControl: formPhone.controls.ddi }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-2">
+			<label for="ddd">DDD</label>
+			<input
+				type="text"
+				name="ddd"
+				pInputText
+				formControlName="ddd"
+				placeholder="Digite aqui o ddd"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDD é obrigatório',
+        formControl: formPhone.controls.ddd }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-100">
+			<label for="phone_number">Número de telefone</label>
+			<input
+				type="text"
+				name="phone_number"
+				pInputText
+				formControlName="phone_number"
+				placeholder="Digite aqui o telefone"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de telefone é obrigatório',
+        formControl: formPhone.controls.phone_number }"
+			>
+			</ng-container>
+		</div>
+	</div>
+
+	<div class="mt-4 text-center">
+		<button
+			pButton
+			type="button"
+			class="p-button-secondary"
+			(click)="form.reset()"
+		>
+			Limpar
+		</button>
+		<button pButton type="button" class="ml-3" (click)="nextStep(0)">
+			Proximo
+		</button>
+	</div>
+</form>
+
+<ng-template
+	#ErrorShow
+	let-must="errorMust"
+	let-minimum="errorMin"
+	let-formControl="formControl"
+	let-cpf="errorCpf"
+	let-email="errorEmail"
+>
+	<ng-template
+		[ngIf]="formControl?.invalid && (formControl?.dirty || formControl?.touched)"
+	>
+		<div *ngIf="formControl?.errors?.required" class="message-error">
+			{{ must }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.minlength" class="message-error">
+			{{ minimum }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.email" class="message-error">
+			{{ email }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.pattern" class="message-error">
+			{{ cpf }}
+		</div>
+	</ng-template>
+</ng-template>

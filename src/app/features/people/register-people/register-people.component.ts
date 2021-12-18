@@ -1,20 +1,41 @@
+import { MenuItem } from "primeng/api";
 import { Validators } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { patternCPF } from "@shared/helpers/patterns.helper";
+import { PersonRegisterStepsControl } from "../person-register-steps.contol";
 
 @Component({
 	templateUrl: "./register-people.component.html",
-	styleUrls: ["./register-people.component.scss"]
+	styleUrls: ["./register-people.component.scss"],
+	encapsulation: ViewEncapsulation.None
 })
 export class RegisterPeopleComponent implements OnInit {
 	formPeople: FormGroup;
 
-	constructor(private router: Router, private fb: FormBuilder) {}
+	items: MenuItem[];
+
+	activeIndex = 0;
+
+	constructor(
+		private router: Router,
+		private fb: FormBuilder,
+		public stepControl: PersonRegisterStepsControl
+	) {}
 
 	ngOnInit() {
 		this.createForm();
+
+		this.items = [
+			{ label: "Pessoa" },
+			{ label: "CNH" },
+			{ label: "Telefone" }
+		];
+
+		this.stepControl.getIndexStep().subscribe((index) => {
+			this.activeIndex = index;
+		});
 	}
 
 	createForm() {
@@ -56,9 +77,9 @@ export class RegisterPeopleComponent implements OnInit {
 		});
 	}
 
-	onSubmit() {
-		console.log(this.formPeople.value);
-	}
+	// onSubmit() {
+	// 	console.log(this.formPeople.value);
+	// }
 
 	get getType() {
 		return typeof this.formPeople.controls.registration_number;

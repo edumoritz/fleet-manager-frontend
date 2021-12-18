@@ -4,7 +4,7 @@ import { ThemeStorageService } from "@stores/theme-storage.service";
 import { AuthService } from "@core/services/auth.service";
 
 @Component({
-	selector: "app-root",
+	selector: "fleet-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None

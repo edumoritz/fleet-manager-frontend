@@ -1,203 +1,220 @@
 <fleet-page-header
 	title="Registro de Pessoa"
-	subtitle="Preencha os campos para cadastrar uma pessoa"
+	subtitle="Preencha os campos para cadastrar um novo cadastro de pessoa"
 ></fleet-page-header>
 
+<p-steps
+	[model]="items"
+	[readonly]="false"
+	[(activeIndex)]="activeIndex"
+></p-steps>
+
+<div class="container mt-4">
+	<p-card>
+		<ng-container *ngIf="activeIndex === 0">
+			<fleet-step-person></fleet-step-person>
+		</ng-container>
+
+		<ng-container *ngIf="activeIndex === 1">
+			<fleet-step-cnh></fleet-step-cnh>
+		</ng-container>
+
+		<ng-container *ngIf="activeIndex === 2">
+			<fleet-step-phones></fleet-step-phones>
+		</ng-container>
+	</p-card>
+</div>
+
+<!--
 <div class="container">
 	<form [formGroup]="formPeople" (ngSubmit)="onSubmit()" #form="ngForm">
-		<p-panel header="Pessoa">
-			<div class="flex flex-row justify-content-center">
-				<div class="flex flex-column m-2 w-3">
-					<label for="name">Nome</label>
-					<input
-						type="text"
-						name="name"
-						pInputText
-						formControlName="name"
-						placeholder="Digite aqui o nome"
-						required
-					/>
+		<div class="flex flex-row justify-content-center">
+			<div class="flex flex-column m-2 w-3">
+				<label for="name">Nome</label>
+				<input
+					type="text"
+					name="name"
+					pInputText
+					formControlName="name"
+					placeholder="Digite aqui o nome"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Nome é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Nome é obrigatório',
           errorMin: 'Nome deve ter no minímo 4 caracteres', formControl: formPeople.controls.name }"
-					>
-					</ng-container>
-				</div>
-
-				<div class="flex flex-column m-2 w-3">
-					<label for="last_name">Sobrenome</label>
-					<input
-						type="text"
-						name="last_name"
-						pInputText
-						formControlName="last_name"
-						placeholder="Digite aqui o sobrenome"
-						required
-					/>
-
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Sobrenome é obrigatório',
-          errorMin: 'Sobrenome deve ter no minímo 4 caracteres', formControl: formPeople.controls.last_name }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
 			</div>
 
-			<div class="flex flex-row justify-content-center">
-				<div class="flex flex-column m-2 w-3">
-					<label for="email">E-mail</label>
-					<input
-						type="text"
-						name="email"
-						pInputText
-						formControlName="email"
-						placeholder="Digite aqui o email"
-						required
-					/>
+			<div class="flex flex-column m-2 w-3">
+				<label for="last_name">Sobrenome</label>
+				<input
+					type="text"
+					name="last_name"
+					pInputText
+					formControlName="last_name"
+					placeholder="Digite aqui o sobrenome"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'email é obrigatório', errorEmail: 'email está inválido', formControl: formPeople.controls.email }"
-					>
-					</ng-container>
-				</div>
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Sobrenome é obrigatório',
+          errorMin: 'Sobrenome deve ter no minímo 4 caracteres', formControl: formPeople.controls.last_name }"
+				>
+				</ng-container>
+			</div>
+		</div>
 
-				<div class="flex flex-column m-2 w-3">
-					<label for="cpf">CPF</label>
-					<input
-						type="text"
-						name="cpf"
-						pInputText
-						formControlName="cpf"
-						placeholder="Digite aqui o cpf"
-						required
-					/>
+		<div class="flex flex-row justify-content-center">
+			<div class="flex flex-column m-2 w-3">
+				<label for="email">E-mail</label>
+				<input
+					type="text"
+					name="email"
+					pInputText
+					formControlName="email"
+					placeholder="Digite aqui o email"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'cpf é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'email é obrigatório', errorEmail: 'email está inválido', formControl: formPeople.controls.email }"
+				>
+				</ng-container>
+			</div>
+
+			<div class="flex flex-column m-2 w-3">
+				<label for="cpf">CPF</label>
+				<input
+					type="text"
+					name="cpf"
+					pInputText
+					formControlName="cpf"
+					placeholder="Digite aqui o cpf"
+					required
+				/>
+
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'cpf é obrigatório',
           errorCpf: 'CPF está inválido',
           formControl: formPeople.controls.cpf }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
 			</div>
-		</p-panel>
+		</div>
 
-		<p-panel header="CNH">
-			<div class="flex flex-row justify-content-center">
-				<div class="flex flex-column m-2 w-3">
-					<label for="registration_number">Número CNH</label>
-					<input
-						type="text"
-						name="registration_number"
-						pInputText
-						formControlName="registration_number"
-						placeholder="Digite aqui o número da cnh"
-						required
-					/>
+		<div class="flex flex-row justify-content-center">
+			<div class="flex flex-column m-2 w-3">
+				<label for="registration_number">Número CNH</label>
+				<input
+					type="text"
+					name="registration_number"
+					pInputText
+					formControlName="registration_number"
+					placeholder="Digite aqui o número da cnh"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de CNH é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de CNH é obrigatório',
           formControl: formPeople.controls.registration_number }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
+			</div>
 
-				<div class="flex flex-column m-2 w-3">
-					<label for="due_date">Data de vencimento</label>
-					<input
-						type="text"
-						name="due_date"
-						pInputText
-						formControlName="due_date"
-						placeholder="Digite aqui a data de vencimento"
-						required
-					/>
+			<div class="flex flex-column m-2 w-3">
+				<label for="due_date">Data de vencimento</label>
+				<input
+					type="text"
+					name="due_date"
+					pInputText
+					formControlName="due_date"
+					placeholder="Digite aqui a data de vencimento"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Data de vencimento da CNH é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Data de vencimento da CNH é obrigatório',
           formControl: formPeople.controls.due_date }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
+			</div>
 
-				<div class="flex flex-column m-2 w-3">
-					<label for="category">Categoria</label>
-					<input
-						type="text"
-						name="category"
-						pInputText
-						formControlName="category"
-						placeholder="Digite aqui a categoria"
-						required
-					/>
+			<div class="flex flex-column m-2 w-3">
+				<label for="category">Categoria</label>
+				<input
+					type="text"
+					name="category"
+					pInputText
+					formControlName="category"
+					placeholder="Digite aqui a categoria"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Categoria da CNH é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Categoria da CNH é obrigatório',
           formControl: formPeople.controls.category }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
 			</div>
-		</p-panel>
+		</div>
 
-		<p-panel header="Telefone">
-			<div class="flex flex-row justify-content-center">
-				<div class="flex flex-column m-2 w-3">
-					<label for="ddi">DDI</label>
-					<input
-						type="text"
-						name="ddi"
-						pInputText
-						formControlName="ddi"
-						placeholder="Digite aqui o ddi"
-						required
-					/>
+		<div class="flex flex-row justify-content-center">
+			<div class="flex flex-column m-2 w-3">
+				<label for="ddi">DDI</label>
+				<input
+					type="text"
+					name="ddi"
+					pInputText
+					formControlName="ddi"
+					placeholder="Digite aqui o ddi"
+					required
+				/>
 
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDI é obrigatório',
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDI é obrigatório',
           formControl: formPeople.controls.ddi }"
-					>
-					</ng-container>
-				</div>
-
-				<div class="flex flex-column m-2 w-3">
-					<label for="ddd">DDD</label>
-					<input
-						type="text"
-						name="ddd"
-						pInputText
-						formControlName="ddd"
-						placeholder="Digite aqui o ddd"
-						required
-					/>
-
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDD é obrigatório',
-          formControl: formPeople.controls.ddd }"
-					>
-					</ng-container>
-				</div>
-
-				<div class="flex flex-column m-2 w-3">
-					<label for="phone_number">Número de telefone</label>
-					<input
-						type="text"
-						name="phone_number"
-						pInputText
-						formControlName="phone_number"
-						placeholder="Digite aqui o telefone"
-						required
-					/>
-
-					<ng-container
-						*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de telefone é obrigatório',
-          formControl: formPeople.controls.phone_number }"
-					>
-					</ng-container>
-				</div>
+				>
+				</ng-container>
 			</div>
-		</p-panel>
+
+			<div class="flex flex-column m-2 w-3">
+				<label for="ddd">DDD</label>
+				<input
+					type="text"
+					name="ddd"
+					pInputText
+					formControlName="ddd"
+					placeholder="Digite aqui o ddd"
+					required
+				/>
+
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'DDD é obrigatório',
+          formControl: formPeople.controls.ddd }"
+				>
+				</ng-container>
+			</div>
+
+			<div class="flex flex-column m-2 w-3">
+				<label for="phone_number">Número de telefone</label>
+				<input
+					type="text"
+					name="phone_number"
+					pInputText
+					formControlName="phone_number"
+					placeholder="Digite aqui o telefone"
+					required
+				/>
+
+				<ng-container
+					*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de telefone é obrigatório',
+          formControl: formPeople.controls.phone_number }"
+				>
+				</ng-container>
+			</div>
+		</div>
 
 		<div class="mt-4 text-center">
 			<button pButton type="button" class="p-button-secondary">
@@ -237,4 +254,4 @@
 			{{ cpf }}
 		</div>
 	</ng-template>
-</ng-template>
+</ng-template> -->

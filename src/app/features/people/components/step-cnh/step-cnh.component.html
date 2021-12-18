@@ -1,0 +1,103 @@
+<h5>Informações da CNH</h5>
+<p>Entre com as informações da CNH</p>
+
+<form [formGroup]="formCnh" #form="ngForm">
+	<div class="flex flex-row">
+		<div class="flex flex-column m-2 w-100">
+			<label for="registration_number">Número CNH</label>
+			<input
+				type="text"
+				name="registration_number"
+				pInputText
+				formControlName="registration_number"
+				placeholder="Digite aqui o número da cnh"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Número de CNH é obrigatório',
+        formControl: formCnh.controls.registration_number }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-100">
+			<label for="due_date">Data de vencimento</label>
+			<input
+				type="text"
+				name="due_date"
+				pInputText
+				formControlName="due_date"
+				placeholder="Digite aqui a data de vencimento"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Data de vencimento da CNH é obrigatório',
+        formControl: formCnh.controls.due_date }"
+			>
+			</ng-container>
+		</div>
+
+		<div class="flex flex-column m-2 w-100">
+			<label for="category">Categoria</label>
+			<input
+				type="text"
+				name="category"
+				pInputText
+				formControlName="category"
+				placeholder="Digite aqui a categoria"
+				required
+			/>
+
+			<ng-container
+				*ngTemplateOutlet="ErrorShow; context: { errorMust: 'Categoria da CNH é obrigatório',
+        formControl: formCnh.controls.category }"
+			>
+			</ng-container>
+		</div>
+	</div>
+
+	<div class="mt-4 text-center">
+		<button
+			pButton
+			type="button"
+			class="p-button-secondary"
+			(click)="form.reset()"
+		>
+			Limpar
+		</button>
+		<button pButton type="button" class="ml-3" (click)="nextStep(2)">
+			Proximo
+		</button>
+	</div>
+</form>
+
+<ng-template
+	#ErrorShow
+	let-must="errorMust"
+	let-minimum="errorMin"
+	let-formControl="formControl"
+	let-cpf="errorCpf"
+	let-email="errorEmail"
+>
+	<ng-template
+		[ngIf]="formControl?.invalid && (formControl?.dirty || formControl?.touched)"
+	>
+		<div *ngIf="formControl?.errors?.required" class="message-error">
+			{{ must }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.minlength" class="message-error">
+			{{ minimum }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.email" class="message-error">
+			{{ email }}
+		</div>
+
+		<div *ngIf="formControl?.errors?.pattern" class="message-error">
+			{{ cpf }}
+		</div>
+	</ng-template>
+</ng-template>
